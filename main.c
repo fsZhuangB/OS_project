@@ -9,6 +9,7 @@ int main(void)
     char *line2, **args;
     pid_t pid, wpid;
     int status;
+    int argn, bg;
 
     /** 函数主循环 */
     while (TRUE)
@@ -28,6 +29,8 @@ int main(void)
         else
             add_history(line2);
 
+        bg = check_background(args);
+
         if (strcmp(args[0], "exit") == 0)
             break;
         else if (strcmp(args[0], "history") == 0)
@@ -41,16 +44,20 @@ int main(void)
             }
         }
         /** 对于父进程，父进程首先挂起，等待子进程的完成，再继续运行 */
-        else if (pid  > 0)
-        {
-            do{
-                wpid =  waitpid(pid, &status, WUNTRACED);
-            }while(!WIFEXITED(status) && !WIFSIGNALED(status));
-        }
         else
         {
-            perror("error forking!");
+            if (bg)
+                printf("[bg start] %d\n", pid);
+            else {
+                do{
+                    wpid = waitpid(pid, &status, WUNTRACED);
+                } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+            }
         }
+//        else
+//        {
+//            perror("error forking!");
+//        }
     }
     free(line2);
     free(args);

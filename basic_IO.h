@@ -17,7 +17,7 @@
 
 static char *history[HISTORY_SIZE]; /** 这是储存历史命令的数组 */
 static int count, head;
-
+static int args_count = 0;
 
 /**
  * 内置shell命令说明
@@ -58,6 +58,8 @@ char * read_line();
 char ** split_line(char* line);
 
 int list_num_builtins(void);
+
+int check_background(char **args);
 
 
 

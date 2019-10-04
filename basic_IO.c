@@ -47,6 +47,8 @@ char **split_line(char *line)
     char **tokens = malloc(bufferSize * sizeof(char*)); // char * 的大小乘 bufferSize的空间
     char *token;
 
+    /** 重置一下参数的数量 */
+    args_count = 0;
     if (!tokens)
     {
         fprintf(stderr, "osh: allocation error...\n");
@@ -62,6 +64,7 @@ char **split_line(char *line)
         */
         tokens[position] = token;
         position++;
+        args_count++;
 
         /**
          * 这里要记得进行buffersize的检查
@@ -69,8 +72,8 @@ char **split_line(char *line)
         */
         token = strtok(NULL, TOKEN_DELIM);
     }
+    // printf("The number of args_count is %d", args_count);
     tokens[position] = NULL;
-    // hist[position] = NULL;
     return tokens;
 }
 
@@ -137,5 +140,28 @@ int check_history(char *line)
 
     strcpy(line, history[index]);
     printf("%s\n", line);
+    return 0;
+}
+
+int check_background(char **args)
+{
+    char *last_arg = args[args_count - 1];
+//
+//    printf("The number of argn is %d", args_count);
+//    printf("%s\n", last_arg);
+    size_t len = strlen(last_arg);
+
+    if (last_arg[len - 1] == '&')
+    {
+        if (len > 1)
+        {
+            last_arg[len - 1] = '\0';
+        }
+        else
+        {
+            args[args_count - 1] = NULL;
+        }
+        return 1;
+    }
     return 0;
 }
