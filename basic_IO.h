@@ -61,6 +61,8 @@ int list_num_builtins(void);
 
 int check_background(char **args);
 
+void init(void);
+
 
 
 

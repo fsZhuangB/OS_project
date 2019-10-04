@@ -9,7 +9,11 @@ int main(void)
     char *line2, **args;
     pid_t pid, wpid;
     int status;
-    int argn, bg;
+
+    /** 记录是否是后台运行 */
+    int bg;
+
+    init();
 
     /** 函数主循环 */
     while (TRUE)
@@ -32,7 +36,13 @@ int main(void)
         bg = check_background(args);
 
         if (strcmp(args[0], "exit") == 0)
+        {
+            printf("See you again!\n");
+            printf("\n");
+            printf("\n");
             break;
+        }
+
         else if (strcmp(args[0], "history") == 0)
             print_history();
         else if ((pid = fork()) == 0)
@@ -44,7 +54,7 @@ int main(void)
             }
         }
         /** 对于父进程，父进程首先挂起，等待子进程的完成，再继续运行 */
-        else
+        else if (pid > 0)
         {
             if (bg)
                 printf("[bg start] %d\n", pid);

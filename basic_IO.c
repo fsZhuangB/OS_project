@@ -165,3 +165,21 @@ int check_background(char **args)
     }
     return 0;
 }
+
+void init(void)
+{
+    printf("************* fszhuangb's SHELL **************\n");
+    printf("*                                            *\n");
+    printf("*                                            *\n");
+    printf("*             Welcome to my shell!           *\n");
+    printf("*                 ************               *\n");
+    printf("*                  *        *                *\n");
+    printf("*                   *      *                 *\n");
+    printf("*                    *    *                  *\n");
+    printf("*                     *  *                   *\n");
+    printf("*                      **                    *\n");
+    printf("**********************************************\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+}
