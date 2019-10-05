@@ -64,10 +64,6 @@ int main(void)
                 } while (!WIFEXITED(status) && !WIFSIGNALED(status));
             }
         }
-//        else
-//        {
-//            perror("error forking!");
-//        }
     }
     free(line2);
     free(args);

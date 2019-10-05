@@ -72,7 +72,6 @@ char **split_line(char *line)
         */
         token = strtok(NULL, TOKEN_DELIM);
     }
-    // printf("The number of args_count is %d", args_count);
     tokens[position] = NULL;
     return tokens;
 }
@@ -123,7 +122,6 @@ int check_history(char *line)
     }
     else if (isdigit(line[1]))
     {
-        printf("It's digit!");
         sscanf(&line[1], "%lu", &id);
         if (id == 0 || id > count)
         {
@@ -146,9 +144,6 @@ int check_history(char *line)
 int check_background(char **args)
 {
     char *last_arg = args[args_count - 1];
-//
-//    printf("The number of argn is %d", args_count);
-//    printf("%s\n", last_arg);
     size_t len = strlen(last_arg);
 
     if (last_arg[len - 1] == '&')
