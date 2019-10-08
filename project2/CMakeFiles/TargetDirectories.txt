@@ -1,0 +1,3 @@
+/Users/fszhuangb/Desktop/new/CMakeFiles/rebuild_cache.dir
+/Users/fszhuangb/Desktop/new/CMakeFiles/edit_cache.dir
+/Users/fszhuangb/Desktop/new/CMakeFiles/Demo.dir
